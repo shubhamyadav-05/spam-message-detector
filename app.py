@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 from flask import Flask, request, jsonify, send_file
+import os
 
 app = Flask(__name__)
 
@@ -27,5 +28,6 @@ def predict():
 
     return jsonify({"label": label, "confidence": round(confidence, 1)})
 
+
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
